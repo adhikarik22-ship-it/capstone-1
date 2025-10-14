@@ -50,7 +50,7 @@ Manages the Ledger Screen menu.
 Contains all the filtering and reporting logic. (like: Deposits, Payments, Month To Date, Search by Vendor).
 
 
-# 📅 Reports (The 'R' option)
+# Reports (The 'R' option)
 The Reports menu provides pre-defined filters using the Java LocalDate API for accurate date range calculations:
 
 Month To Date
