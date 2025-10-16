@@ -8,23 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Transaction {
-    private final String date;
-    private final String description;
-    private final String vendor;
-    private final double amount;
-
-    public Transaction(String date, String description, String vendor, double amount) {
-        this.date = date;
-        this.description = description;
-        this.vendor = vendor;
-        this.amount = amount;
-    }
-
-    //Accessors for filtering and reporting
-    public String getDate() { return date; }
-    public String getVendor() { return vendor; }
-    public double getAmount() { return amount; }
+public record Transaction(String date, String description, String vendor, double amount) {
 
     // CSV I/O Methods
     public String toCSVString() {
@@ -94,14 +78,14 @@ public class Transaction {
 
         private void displayDeposits(List<Transaction> transactions) {
             List<Transaction> deposits = transactions.stream()
-                    .filter(t -> t.getAmount() > 0)
+                    .filter(t -> t.amount() > 0)
                     .collect(Collectors.toList());
             displayTransactions(deposits, "Deposits");
         }
 
         private void displayPayments(List<Transaction> transactions) {
             List<Transaction> payments = transactions.stream()
-                    .filter(t -> t.getAmount() < 0)
+                    .filter(t -> t.amount() < 0)
                     .collect(Collectors.toList());
             displayTransactions(payments, "Payments (Debits)");
         }
@@ -151,7 +135,7 @@ public class Transaction {
                 switch (input) {
                     case "1":
                         filteredList = filterByDate(transactions, Period.MONTH_TO_DATE);
-                        displayTransactions(filteredList, "Report: Month To Date");
+                        displayTransactions(filteredList,"Report: Month To Date");
                         break;
                     case "2":
                         filteredList = filterByDate(transactions, Period.PREVIOUS_MONTH);
@@ -181,7 +165,7 @@ public class Transaction {
 
         // Private helper methods for  filtering dates
 
-        private enum Period { MONTH_TO_DATE, PREVIOUS_MONTH, YEAR_TO_DATE, PREVIOUS_YEAR }
+        private enum Period {MONTH_TO_DATE, PREVIOUS_MONTH, YEAR_TO_DATE, PREVIOUS_YEAR}
 
         private List<Transaction> filterByDate(List<Transaction> transactions, Period period) {
             LocalDate today = LocalDate.now();
@@ -217,7 +201,7 @@ public class Transaction {
             return transactions.stream()
                     .filter(t -> {
                         try {
-                            LocalDate transactionDate = LocalDate.parse(t.getDate(), formatter);
+                            LocalDate transactionDate = LocalDate.parse(t.date(), formatter);
                             return !transactionDate.isBefore(finalStartDate) && !transactionDate.isAfter(finalEndDate);
                         } catch (Exception e) {
                             return false;
@@ -228,13 +212,9 @@ public class Transaction {
 
         private List<Transaction> filterByVendor(List<Transaction> transactions, String vendor) {
             return transactions.stream()
-                    .filter(t -> t.getVendor().equalsIgnoreCase(vendor))
+                    .filter(t-> t.vendor().equalsIgnoreCase(vendor))
                     .collect(Collectors.toList());
         }
     }
 }
-
-
-
-
 
