@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import static java.util.Scanner.*;
 
 public class Main {
     private static final String FILE_NAME = "transactions.csv";
@@ -49,6 +50,7 @@ public class Main {
 
             input = scanner.nextLine().toUpperCase();
 
+
             switch (input) {
                 case "D":
                     addTransaction(false); // Deposit
@@ -72,7 +74,29 @@ public class Main {
         String type = isPayment ? "Payment (Debit)" : "Deposit";
         System.out.println("\n*** Add " + type + " ***");
 
+        // Auto setting the current date
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        System.out.println("Enter Description");
+        String description = scanner.nextLine();
+
+        System.out.println("Enter vendor: ");
+        String vendor = scanner.nextLine();
+
+        System.out.println("Enter amount: ");
+        double amount;
+        try {
+            amount = Double.parseDouble(scanner.nextLine());
+            if (amount <= 0) {
+                System.out.println("Amount must be positive.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid amount format. Please enter a number.");
+            return;
+        }
     }
+
 }
 
 
