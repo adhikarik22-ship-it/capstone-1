@@ -2,7 +2,7 @@
 
 <img width="712" height="598" alt="Screenshot 2025-10-14 at 9 08 00 AM" src="https://github.com/user-attachments/assets/3ca42f45-89c3-4390-a56f-db16737ed8bf" />
 
-# Home Screen ption
+# Home Screen option.
 files created: Main,Transaction,Ledger,Home.
 D - Deposit:
 prompt user for description, vendor, and amount. Save positive transaction to transaction.csv.
@@ -38,7 +38,7 @@ returns to Homescreen
 # files and what they should contain:
 main.java: main method
 homescreen menu logic
-input handeling
+input handeling.
 core file I/O (loading and saving)
 
 transaction.java: Data model
