@@ -18,7 +18,7 @@ public class Main {
         System.out.println("Starting Transaction Ledger Application...");
         loadTransactions();
 
-        // Start the home screen loop
+        // Starting the home screen loop
         displayHomeMenu();
 
         // Final save before exiting
@@ -33,7 +33,7 @@ public class Main {
     private static void loadTransactions() {
     }
 
-    // --- Core Application Logic (Home Screen) ---
+    //  Home Screen
 
     public static void displayHomeMenu() {
         String input;
@@ -68,9 +68,14 @@ public class Main {
         }
     }
 
-    private static void addTransaction(boolean b) {
+    private static void addTransaction(boolean isPayment) {
+        String type = isPayment ? "Payment (Debit)" : "Deposit";
+        System.out.println("\n*** Add " + type + " ***");
+
     }
 }
+
+
 
 
 
