@@ -41,9 +41,9 @@ homescreen menu logic
 input handeling.
 core file I/O (loading and saving)
 
-transaction.java: Data model
+transaction.java: Data model.
 Defines the structure of a single transaction object. 
-Includes methods for converting to/from the CSV string format
+Includes methods for converting to/from the CSV string format.
 
 ledger.java: View/Controler
 Manages the Ledger Screen menu. 
