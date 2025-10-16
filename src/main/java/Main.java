@@ -95,7 +95,21 @@ public class Main {
             System.out.println("Invalid amount format. Please enter a number.");
             return;
         }
+
+        // Applying negative sign for payments and keeping positive for deposits
+        if (isPayment) {
+            amount = -Math.abs(amount);
+        }
+
+        Transaction newTransaction = new Transaction(date, description, vendor, amount);
+        transactions.add(newTransaction);
+        saveTransactions(); // this is saved after each entry
+        System.out.println(type + " added nd saved successfully!");
     }
+
+
+
+
 
 }
 
