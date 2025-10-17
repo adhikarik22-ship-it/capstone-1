@@ -34,7 +34,7 @@ public record Transaction(String date, String description, String vendor, double
     }
 
 
-    // Ledger
+    // Ledger nested
 
     public static class Ledger {
 
@@ -135,7 +135,7 @@ public record Transaction(String date, String description, String vendor, double
                 switch (input) {
                     case "1":
                         filteredList = filterByDate(transactions, Period.MONTH_TO_DATE);
-                        displayTransactions(filteredList,"Report: Month To Date");
+                        displayTransactions(filteredList, "Report: Month To Date");
                         break;
                     case "2":
                         filteredList = filterByDate(transactions, Period.PREVIOUS_MONTH);
@@ -212,7 +212,7 @@ public record Transaction(String date, String description, String vendor, double
 
         private List<Transaction> filterByVendor(List<Transaction> transactions, String vendor) {
             return transactions.stream()
-                    .filter(t-> t.vendor().equalsIgnoreCase(vendor))
+                    .filter(t -> t.vendor().equalsIgnoreCase(vendor))
                     .collect(Collectors.toList());
         }
     }
